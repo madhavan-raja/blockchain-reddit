@@ -1,0 +1,95 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "subredditName",
+						"type": "string"
+					}
+				],
+				"name": "createSubreddit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSubreddits",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "subredditName",
+								"type": "string"
+							}
+						],
+						"internalType": "struct WeirdReddit.Subreddit[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"custom:dev-run-script": "./scripts/deploy_with_ethers.ts",
+			"details": "Write and view posts on WeirdReddit",
+			"kind": "dev",
+			"methods": {
+				"createSubreddit(string)": {
+					"details": "Create a subreddit",
+					"params": {
+						"subredditName": "value to store"
+					}
+				},
+				"getSubreddits()": {
+					"details": "Return value ",
+					"returns": {
+						"_0": "value of 'number'"
+					}
+				}
+			},
+			"title": "WeirdReddit",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/WeirdReddit.sol": "WeirdReddit"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/WeirdReddit.sol": {
+			"keccak256": "0xe27554b6472821bd843bdc3b076bdc359358d16c1c9c5969120049fdc4553322",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5689c745cc27f0d2986ebeaff41707fbec2102b77f9cd4375b83beda171f5d73",
+				"dweb:/ipfs/QmSiTjwTfXpfsX5EYQY6mqNYnvpZ7FunAH8QzXzhEc13Sh"
+			]
+		}
+	},
+	"version": 1
+}
