@@ -9,6 +9,52 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newSubredditName",
+						"type": "string"
+					}
+				],
+				"name": "changeSubreddit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "subredditName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "postTitle",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "postContent",
+						"type": "string"
+					}
+				],
+				"name": "createPost",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "subredditName",
 						"type": "string"
 					}
@@ -16,6 +62,123 @@
 				"name": "createSubreddit",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getPost",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "subredditName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "title",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "content",
+								"type": "string"
+							}
+						],
+						"internalType": "struct WeirdReddit.Post",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPosts",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "subredditName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "title",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "content",
+								"type": "string"
+							}
+						],
+						"internalType": "struct WeirdReddit.Post[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "subredditName",
+						"type": "string"
+					}
+				],
+				"name": "getPostsInSubreddit",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "subredditName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "title",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "content",
+								"type": "string"
+							}
+						],
+						"internalType": "struct WeirdReddit.Post[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -37,6 +200,67 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newPostTitle",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newPostContent",
+						"type": "string"
+					}
+				],
+				"name": "modifyPost",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "verifyPost",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "subredditName",
+						"type": "string"
+					}
+				],
+				"name": "verifySubreddit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -44,16 +268,58 @@
 			"details": "Write and view posts on WeirdReddit",
 			"kind": "dev",
 			"methods": {
+				"changeSubreddit(string,string)": {
+					"details": "Changes the subreddit of post with given ID"
+				},
+				"createPost(string,string,string,string)": {
+					"details": "Create a post",
+					"params": {
+						"subredditName": "Name of the new subreddit"
+					}
+				},
 				"createSubreddit(string)": {
 					"details": "Create a subreddit",
 					"params": {
-						"subredditName": "value to store"
+						"subredditName": "Name of the new subreddit"
+					}
+				},
+				"getPost(string)": {
+					"details": "Return posts with given ID",
+					"returns": {
+						"_0": "Values of all posts in a subreddit"
+					}
+				},
+				"getPosts()": {
+					"details": "Return all posts",
+					"returns": {
+						"_0": "Values of all posts"
+					}
+				},
+				"getPostsInSubreddit(string)": {
+					"details": "Return all posts in a subreddit",
+					"returns": {
+						"_0": "Values of all posts in a subreddit"
 					}
 				},
 				"getSubreddits()": {
-					"details": "Return value ",
+					"details": "Return the values of all subreddits ",
 					"returns": {
-						"_0": "value of 'number'"
+						"_0": "Values of all subreddits"
+					}
+				},
+				"modifyPost(string,string,string)": {
+					"details": "Modify post with given ID"
+				},
+				"verifyPost(string)": {
+					"details": "Check whether a post exists ",
+					"returns": {
+						"_0": "Whether a post exists"
+					}
+				},
+				"verifySubreddit(string)": {
+					"details": "Check whether a subreddit exists ",
+					"returns": {
+						"_0": "Whether a subreddit exists"
 					}
 				}
 			},
@@ -83,11 +349,11 @@
 	},
 	"sources": {
 		"contracts/WeirdReddit.sol": {
-			"keccak256": "0xe27554b6472821bd843bdc3b076bdc359358d16c1c9c5969120049fdc4553322",
+			"keccak256": "0xf6f919ed0dbe7fb5accaeac918b21e6d6c0fe43efc5c709e8d045ef0bd124525",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5689c745cc27f0d2986ebeaff41707fbec2102b77f9cd4375b83beda171f5d73",
-				"dweb:/ipfs/QmSiTjwTfXpfsX5EYQY6mqNYnvpZ7FunAH8QzXzhEc13Sh"
+				"bzz-raw://5dc765dcb009bc9a7a5539aad85b8cd957246fc6a86d678b39cae2f157e5d5a7",
+				"dweb:/ipfs/QmPyVmHgGgsTMeyBgi6YaFrbPHxEhq9raw5WQte6nCaZ7d"
 			]
 		}
 	},

@@ -18,7 +18,7 @@ contract WeirdReddit {
 
     struct Post {
         string id;
-        Subreddit subreddit;
+        string subredditName;
         string title;
         string content;
     }
@@ -28,25 +28,132 @@ contract WeirdReddit {
 
     /**
      * @dev Create a subreddit
-     * @param subredditName value to store
+     * @param subredditName Name of the new subreddit
      */
     function createSubreddit(string memory subredditName) public {
+        if (verifySubreddit(subredditName)) return;
+        
         Subreddit memory newSubreddit = Subreddit(subredditName);
-
-        for (uint i = 0; i < subreddits.length; ++i) {
-            if (compare(subreddits[i].subredditName, newSubreddit.subredditName)) {
-                return; // Handle Error
-            }
-        }
-
         subreddits.push(newSubreddit);
     }
 
     /**
-     * @dev Return value 
-     * @return value of 'number'
+     * @dev Check whether a subreddit exists 
+     * @return Whether a subreddit exists
+     */
+    function verifySubreddit(string memory subredditName) public view returns (bool) {
+        for (uint i = 0; i < subreddits.length; ++i) {
+            if (compare(subreddits[i].subredditName, subredditName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @dev Return the values of all subreddits 
+     * @return Values of all subreddits
      */
     function getSubreddits() public view returns (Subreddit[] memory) {
         return subreddits;
+    }
+
+    /**
+     * @dev Create a post
+     * @param subredditName Name of the new subreddit
+     */
+    function createPost(string memory id, string memory subredditName, string memory postTitle, string memory postContent) public {
+        if (verifyPost(id)) return;
+
+        Post memory newPost = Post(id, subredditName, postTitle, postContent);
+        posts.push(newPost);
+    }
+
+    /**
+     * @dev Check whether a post exists 
+     * @return Whether a post exists
+     */
+    function verifyPost(string memory id) public view returns (bool) {
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].id, id)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @dev Return all posts
+     * @return Values of all posts
+     */
+    function getPosts() public view returns (Post[] memory) {
+        return posts;
+    }
+
+    /**
+     * @dev Return all posts in a subreddit
+     * @return Values of all posts in a subreddit
+     */
+    function getPostsInSubreddit(string memory subredditName) public view returns (Post[] memory) {
+        uint filterSize = 0;
+        uint index = 0;
+
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].subredditName, subredditName)) {
+                ++filterSize;
+            }
+        }
+
+        Post[] memory filteredPosts = new Post[](filterSize);
+
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].subredditName, subredditName)) {
+                filteredPosts[index] = posts[i];
+                ++index;
+            }
+        }
+
+        return filteredPosts;
+    }
+
+    /**
+     * @dev Return posts with given ID
+     * @return Values of all posts in a subreddit
+     */
+    function getPost(string memory id) public view returns (Post memory) {
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].id, id)) {
+                return posts[i];
+            }
+        }
+
+        return Post("", "", "", ""); // Post Doesn't exist
+    }
+
+    /**
+     * @dev Modify post with given ID
+     */
+    function modifyPost(string memory id, string memory newPostTitle, string memory newPostContent) public {
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].id, id)) {
+                posts[i].title = newPostTitle;
+                posts[i].content = newPostContent;
+            }
+        }
+    }
+
+    /**
+     * @dev Changes the subreddit of post with given ID
+     */
+    function changeSubreddit(string memory id, string memory newSubredditName) public {
+        if (!verifySubreddit(newSubredditName)) return;
+
+        for (uint i = 0; i < posts.length; ++i) {
+            if (compare(posts[i].id, id)) {
+                posts[i].subredditName = newSubredditName;
+            }
+        }
     }
 }
