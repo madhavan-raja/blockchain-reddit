@@ -1,4 +1,5 @@
 # Reddit on the Blockchain
+This application simulates a lower-scale variation of [Reddit](https://www.reddit.com/) (mixed with some features from [4chan](https://www.4chan.org/)) that runs on the Blockchain. Users can create subreddits and posts, and modify said posts. The use of media and subreddit moderation is not supported at the moment. Every user is anonymous, and thus no account creation is required.
 
 ## Installation
 [Remix](https://remix.ethereum.org/) can be used to deploy and run this application.
