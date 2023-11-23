@@ -65,6 +65,7 @@ contract WeirdReddit {
      */
     function createPost(string memory id, string memory subredditName, string memory postTitle, string memory postContent) public {
         if (verifyPost(id)) return;
+        if (!verifySubreddit(subredditName)) return;
 
         Post memory newPost = Post(id, subredditName, postTitle, postContent);
         posts.push(newPost);

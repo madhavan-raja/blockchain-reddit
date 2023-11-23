@@ -349,11 +349,11 @@
 	},
 	"sources": {
 		"contracts/WeirdReddit.sol": {
-			"keccak256": "0xf6f919ed0dbe7fb5accaeac918b21e6d6c0fe43efc5c709e8d045ef0bd124525",
+			"keccak256": "0xdbfc291b8d0c937112f8650993fd6d91e529ee1f3ef0f118df3f800f001ca1ca",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5dc765dcb009bc9a7a5539aad85b8cd957246fc6a86d678b39cae2f157e5d5a7",
-				"dweb:/ipfs/QmPyVmHgGgsTMeyBgi6YaFrbPHxEhq9raw5WQte6nCaZ7d"
+				"bzz-raw://4f458a9b4f084d40a5de7de4eed09dbe1cfbaf983dc2e5dc6a447ee9a8e72de9",
+				"dweb:/ipfs/QmRGPZYFohwg2iKeueHafybVAvvP9XZTHk8xCwTH2ADjD4"
 			]
 		}
 	},
