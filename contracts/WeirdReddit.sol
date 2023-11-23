@@ -31,7 +31,7 @@ contract WeirdReddit {
      * @param subredditName Name of the new subreddit
      */
     function createSubreddit(string memory subredditName) public {
-        if (verifySubreddit(subredditName)) return;
+        require(!verifySubreddit(subredditName), "Subreddit already exists.");
         
         Subreddit memory newSubreddit = Subreddit(subredditName);
         subreddits.push(newSubreddit);
@@ -41,7 +41,7 @@ contract WeirdReddit {
      * @dev Check whether a subreddit exists 
      * @return Whether a subreddit exists
      */
-    function verifySubreddit(string memory subredditName) public view returns (bool) {
+    function verifySubreddit(string memory subredditName) private view returns (bool) {
         for (uint i = 0; i < subreddits.length; ++i) {
             if (compare(subreddits[i].subredditName, subredditName)) {
                 return true;
@@ -64,25 +64,33 @@ contract WeirdReddit {
      * @param subredditName Name of the new subreddit
      */
     function createPost(string memory id, string memory subredditName, string memory postTitle, string memory postContent) public {
-        if (verifyPost(id)) return;
-        if (!verifySubreddit(subredditName)) return;
+        require(!verifyPost(id), "Post with ID already exists.");
+        require(verifySubreddit(subredditName), "Subreddit does not exist.");
 
         Post memory newPost = Post(id, subredditName, postTitle, postContent);
         posts.push(newPost);
     }
 
     /**
-     * @dev Check whether a post exists 
-     * @return Whether a post exists
+     * @dev Get the index of the post with some ID 
+     * @return The index of the post with some ID
      */
-    function verifyPost(string memory id) public view returns (bool) {
+    function getPostIndex(string memory id) private view returns (uint) {
         for (uint i = 0; i < posts.length; ++i) {
             if (compare(posts[i].id, id)) {
-                return true;
+                return i;
             }
         }
 
-        return false;
+        return posts.length;
+    }
+
+    /**
+     * @dev Check whether a post exists 
+     * @return Whether a post exists
+     */
+    function verifyPost(string memory id) private view returns (bool) {
+        return getPostIndex(id) < posts.length;
     }
 
     /**
@@ -98,6 +106,8 @@ contract WeirdReddit {
      * @return Values of all posts in a subreddit
      */
     function getPostsInSubreddit(string memory subredditName) public view returns (Post[] memory) {
+        require(verifySubreddit(subredditName), "Subreddit does not exist.");
+
         uint filterSize = 0;
         uint index = 0;
 
@@ -124,13 +134,11 @@ contract WeirdReddit {
      * @return Values of all posts in a subreddit
      */
     function getPost(string memory id) public view returns (Post memory) {
-        for (uint i = 0; i < posts.length; ++i) {
-            if (compare(posts[i].id, id)) {
-                return posts[i];
-            }
-        }
+        uint postIndex = getPostIndex(id);
 
-        return Post("", "", "", ""); // Post Doesn't exist
+        require(postIndex < posts.length, "Post does not exist.");
+
+        return posts[postIndex];
     }
 
     /**
@@ -149,7 +157,7 @@ contract WeirdReddit {
      * @dev Changes the subreddit of post with given ID
      */
     function changeSubreddit(string memory id, string memory newSubredditName) public {
-        if (!verifySubreddit(newSubredditName)) return;
+        require(verifySubreddit(newSubredditName), "Subreddit does not exist.");
 
         for (uint i = 0; i < posts.length; ++i) {
             if (compare(posts[i].id, id)) {

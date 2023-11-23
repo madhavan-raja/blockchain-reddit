@@ -223,44 +223,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "id",
-						"type": "string"
-					}
-				],
-				"name": "verifyPost",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "subredditName",
-						"type": "string"
-					}
-				],
-				"name": "verifySubreddit",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -309,18 +271,6 @@
 				},
 				"modifyPost(string,string,string)": {
 					"details": "Modify post with given ID"
-				},
-				"verifyPost(string)": {
-					"details": "Check whether a post exists ",
-					"returns": {
-						"_0": "Whether a post exists"
-					}
-				},
-				"verifySubreddit(string)": {
-					"details": "Check whether a subreddit exists ",
-					"returns": {
-						"_0": "Whether a subreddit exists"
-					}
 				}
 			},
 			"title": "WeirdReddit",
@@ -349,11 +299,11 @@
 	},
 	"sources": {
 		"contracts/WeirdReddit.sol": {
-			"keccak256": "0xdbfc291b8d0c937112f8650993fd6d91e529ee1f3ef0f118df3f800f001ca1ca",
+			"keccak256": "0xe19968e76af3e5c6e85c92cb024ef43c21974e8c4a35a58218b56e2f3bc72795",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://4f458a9b4f084d40a5de7de4eed09dbe1cfbaf983dc2e5dc6a447ee9a8e72de9",
-				"dweb:/ipfs/QmRGPZYFohwg2iKeueHafybVAvvP9XZTHk8xCwTH2ADjD4"
+				"bzz-raw://234ef9057eec87ff223496b94c01e68527bb4c82f6cf97c8c3b9dfd7e39ca734",
+				"dweb:/ipfs/QmQfuapa55kyBg49WPBGoBTYLchmQoqUwMcemivLEJrS7B"
 			]
 		}
 	},
